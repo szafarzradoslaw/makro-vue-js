@@ -18,7 +18,7 @@ watch([food, quantity], ([newFood, newQuantity]) => {
 
     lastProduct = foodList.value[foodList.value.length - 1]
 
-    if (lastProduct == newFood){
+    if (lastProduct && lastProduct.food === newFood){ // sprawdzamy czy lastProduct wogole isnieje
       lastProduct.quantity = newQuantity;
       lastProduct.productCalories = productCalories.value;
     }
