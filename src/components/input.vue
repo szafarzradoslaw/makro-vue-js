@@ -1,37 +1,14 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue';
+import { updateCalories, productCalories } from './caloriesCalculation.js'
+
 const food = ref("")
 const quantity = ref(0)
-const productCalories = ref(0)
-const foodList = ref([])
-
-const foodCalories = {
-  apple : 200,
-  banana : 100,
-};
-
 watch([food, quantity], ([newFood, newQuantity]) => {
-  if (newFood in foodCalories && newQuantity > 0) {
-    let caloriesPer100 = foodCalories[newFood]
-    productCalories.value = caloriesPer100 * 0.01 * newQuantity
-
-
-    lastProduct = foodList.value[foodList.value.length - 1]
-
-    if (lastProduct && lastProduct.food === newFood){ // sprawdzamy czy lastProduct wogole isnieje
-      lastProduct.quantity = newQuantity;
-      lastProduct.productCalories = productCalories.value;
-    }
-    else{
-      foodList.value.push({
-      food: newFood,
-      quantity: newQuantity,
-      productCalories: productCalories.value,
-    })
-    }
-  }
-})
-</script>
+  updateCalories(newFood, newQuantity);
+}
+)
+</script> 
 
 <template>
   <input type="text" v-model="food">
