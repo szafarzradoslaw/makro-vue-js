@@ -2,6 +2,8 @@ import { ref } from 'vue'
 
 const productCalories = ref(0)
 const foodList = ref([])
+const food = ref("")
+const quantity = ref(0)
 
 const foodCalories = {
   apple: 200,
@@ -30,6 +32,8 @@ function updateCalories(newFood, newQuantity) {
 }
 
 export {
+  food,
+  quantity,
   productCalories,
   foodList,
   updateCalories,

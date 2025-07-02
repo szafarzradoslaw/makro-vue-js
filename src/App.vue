@@ -1,6 +1,6 @@
 <script setup>
 import Input from './components/input.vue'
-import Food from './components/foodInputed.vue'
+import Food from './components/values.vue'
 </script>
 
 <template>
