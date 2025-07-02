@@ -5,7 +5,7 @@ const quantity = ref(0)
 
 const foodMacros = {
   apple: {
-    calories: 100,
+    calories: 200,
     protein: 10,
     fat: 10,
     carbs: 50,
@@ -20,7 +20,12 @@ const foodMacros = {
 
 function productMacros(newFood, newQuantity){
   if (newFood in foodMacros && newQuantity > 0){
-    console.log(newFood, newQuantity)
+    let foodCalories = foodMacros[newFood].calories * 0.01 * newQuantity
+    let foodProtein = foodMacros[newFood].protein * 0.01 * newQuantity
+    let foodFat = foodMacros[newFood].fat * 0.01 * newQuantity
+    let foodCarbs = foodMacros[newFood].carbs * 0.01 * newQuantity
+
+    console.log(foodCalories, foodProtein, foodFat, foodCarbs)
   }
 }
 export {
