@@ -1,6 +1,6 @@
 import json               # To read JSON files
 from flask import Flask, jsonify, request
-from flask_cors import CORS  # To allow cross-origin requests (frontend <-> backend)
+from flask_cors import CORS  # type: ignore # To allow cross-origin requests (frontend <-> backend)
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS so your frontend (usually on a different port) can request data

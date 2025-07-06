@@ -1,7 +1,6 @@
 <script setup>
 import { watch } from 'vue';
 import { food, quantity } from './caloriesCalculation.js'
-import { getFood } from './caloriesCalculation.js'
 import { calculateMacros } from './caloriesCalculation.js'
 
 let debounceTimeout;
