@@ -1,35 +1,30 @@
 import { ref } from 'vue'
-const foodList = ref([])
 const food = ref("")
 const quantity = ref(0)
 
-const foodMacros = {
-  apple: {
-    calories: 200,
-    protein: 10,
-    fat: 10,
-    carbs: 50,
-  },
-  banana: {
-    calories: 100,
-    protein: 20,
-    fat: 10,
-    carbs: 0,
+
+async function getFood(food) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/api/food/${food}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
   }
 }
 
-function productMacros(newFood, newQuantity){
-  if (newFood in foodMacros && newQuantity > 0){
-    let foodCalories = foodMacros[newFood].calories * 0.01 * newQuantity
-    let foodProtein = foodMacros[newFood].protein * 0.01 * newQuantity
-    let foodFat = foodMacros[newFood].fat * 0.01 * newQuantity
-    let foodCarbs = foodMacros[newFood].carbs * 0.01 * newQuantity
-
-    console.log(foodCalories, foodProtein, foodFat, foodCarbs)
-  }
+async function calculateMacros(food, quantity){
+  const data = await getFood(food);
+  const kalorie = (data.calories * quantity * 0.01)
+  console.log(kalorie)
 }
+
 export {
   food,
   quantity,
-  productMacros,
+  getFood,
+  calculateMacros,
 }

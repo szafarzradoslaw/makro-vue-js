@@ -1,13 +1,20 @@
 <script setup>
 import { watch } from 'vue';
-import { productMacros , food, quantity } from './caloriesCalculation.js'
+import { food, quantity } from './caloriesCalculation.js'
+import { getFood } from './caloriesCalculation.js'
+import { calculateMacros } from './caloriesCalculation.js'
+
 let debounceTimeout;
 
-watch([food, quantity], ([newFood, newQuantity]) => {
+watch([food, quantity], () => {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(() => {
-    productMacros(newFood, newQuantity);
-  }, 300); // wait 300ms after last input
+    const foodTrimed = food.value.trim();
+    if (foodTrimed && quantity.value > 0){
+      // console.log(foodTrimed);
+      calculateMacros(foodTrimed, quantity.value)
+    }
+  }, 500); // wait 500ms after last input
 });
 
 </script> 
