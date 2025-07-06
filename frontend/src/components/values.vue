@@ -3,7 +3,7 @@ import { kalorieTotal, proteinTotal, fatTotal, carbsTotal } from './caloriesCalc
 </script>
 
 <template>
-  <div class="box-container">
+    <div class="box-container">
     <div class="value-box">
       <div class="value">{{Math.round(kalorieTotal)}}</div>
       <div class="label">Calories</div>
@@ -20,7 +20,7 @@ import { kalorieTotal, proteinTotal, fatTotal, carbsTotal } from './caloriesCalc
       <div class="value">{{Math.round(carbsTotal)}}</div>
       <div class="label">Carbs</div>
     </div>
-  </div>
+    </div>
 </template>
 
 <style scoped>

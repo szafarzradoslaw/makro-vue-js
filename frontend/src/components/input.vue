@@ -19,8 +19,10 @@ watch([food, quantity], () => {
 </script> 
 
 <template>
+  <div>
   <input type="text" v-model="food">
   <input type="number" v-model.number="quantity">
+  </div>
 </template>
 
 <style scoped>
