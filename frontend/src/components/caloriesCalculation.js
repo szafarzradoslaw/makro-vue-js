@@ -12,18 +12,20 @@ async function getFood(food) {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
   }
 }
 
-async function calculateMacros(food, quantity){
+async function calculateMacros(food, quantity) {
   const data = await getFood(food);
   kalorieTotal.value += (data.calories * quantity * 0.01)
-  proteinTotal.value +=  (data.protein * quantity * 0.01)
-  fatTotal.value  += (data.fat * quantity * 0.01)
+  proteinTotal.value += (data.protein * quantity * 0.01)
+  fatTotal.value += (data.fat * quantity * 0.01)
   carbsTotal.value += (data.carbs * quantity * 0.01)
-  console.log(kalorieTotal.value, proteinTotal.value, fatTotal.value, carbsTotal.value )
+  console.log(kalorieTotal.value, proteinTotal.value, fatTotal.value, carbsTotal.value)
 }
 
 export {
