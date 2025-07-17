@@ -19,8 +19,6 @@ async function getDayInfo() {
   }
 }
 
-let test = await getDayInfo();
-console.log(test);
 
 async function getFood(food) {
   try {

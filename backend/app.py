@@ -1,4 +1,5 @@
 import json
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS  # type: ignore # To allow cross-origin requests (frontend <-> backend)
 
@@ -22,9 +23,22 @@ def get_food(food):
 
 @app.route('/api/day-info/<day>', methods=['GET'])
 def day_info(day):
-    with open(f"../databases/{day}.json", encoding='utf-8') as file:
-        data = json.load(file)
-    return jsonify(data)
-
+    if os.path.exists(f"../databases/day-info/{day}.json"):
+        with open(f"../databases/day-info/{day}.json", encoding='utf-8') as file:
+            data = json.load(file)
+            return jsonify(data)
+    else:
+        empty_day = {
+        "calories" : 0,
+        "protein" : 0,
+        "fat" : 0,
+        "carbs" : 0
+        }
+        
+        empty_day = json.dumps(empty_day)
+        with open(f"../databases/day-info/{day}.json", "w") as file:
+            file.write(empty_day)
+        return empty_day
+        
 if __name__ == '__main__':
     app.run(debug=True)  # Run the Flask server with debug mode on for easy testing
