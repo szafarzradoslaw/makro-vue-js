@@ -1,5 +1,5 @@
 <script setup>
-import { kalorieTotal, proteinTotal, fatTotal, carbsTotal } from './caloriesCalculation';
+import { kalorieTotal, proteinTotal, fatTotal, carbsTotal } from './script';
 </script>
 
 <template>
