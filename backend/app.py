@@ -22,7 +22,7 @@ def get_food(food):
         return jsonify({"error": "Food not found"}), 404
 
 @app.route('/api/get-day-info/<day>', methods=['GET'])
-def day_info(day):
+def get_day_info(day):
     if os.path.exists(f"../databases/day-info/{day}.json"):
         with open(f"../databases/day-info/{day}.json", encoding='utf-8') as file:
             data = json.load(file)
@@ -30,15 +30,39 @@ def day_info(day):
             return jsonify(data)
     else:
         empty_day = {
-        "calories" : 0,
-        "protein" : 0,
-        "fat" : 0,
-        "carbs" : 0
+        "kalorieTotal" : 0,
+        "proteinTotal" : 0,
+        "fatTotal" : 0,
+        "carbsTotal" : 0
         }
         empty_day = json.dumps(empty_day)
         with open(f"../databases/day-info/{day}.json", "w") as file:
             file.write(empty_day)
         return empty_day
+
+@app.route('/api/get-day-info/<day>', methods=['PATCH'])
+def post_day_info(day):
+    try:
+        data = request.get_json()
+        kalorie_total = data.get('kalorieTotal')
+        protein_total = data.get('proteinTotal')
+        fat_total = data.get('fatTotal')
+        carbs_total = data.get('carbsTotal')    
         
+        #update database#
+        with open(f"../databases/day-info/{day}.json", 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+        
+        return jsonify({
+            'day': day,
+            'kalorieTotal': kalorie_total,
+            'proteinTotal': protein_total,
+            'fatTotal': fat_total,
+            'carbsTotal': carbs_total,
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
 if __name__ == '__main__':
     app.run(debug=True)  # Run the Flask server with debug mode on for easy testing
