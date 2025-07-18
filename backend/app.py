@@ -21,7 +21,7 @@ def get_food(food):
     else:
         return jsonify({"error": "Food not found"}), 404
 
-@app.route('/api/day-info/<day>', methods=['GET', 'POST'])
+@app.route('/api/get-day-info/<day>', methods=['GET'])
 def day_info(day):
     if os.path.exists(f"../databases/day-info/{day}.json"):
         with open(f"../databases/day-info/{day}.json", encoding='utf-8') as file:

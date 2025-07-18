@@ -11,7 +11,7 @@ const carbsTotal = ref(dayInfo.carbs)
 async function getDayInfo() {
   let Today = new Date().toISOString().slice(0, 10);
   try{
-    const response = await fetch(`http://127.0.0.1:5000/api/day-info/${Today}`)
+    const response = await fetch(`http://127.0.0.1:5000/api/get-day-info/${Today}`)
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
