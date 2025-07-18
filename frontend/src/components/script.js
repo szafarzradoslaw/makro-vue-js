@@ -1,9 +1,12 @@
 import { ref } from 'vue'
 
-const kalorieTotal = ref(0)
-const proteinTotal = ref(0)
-const fatTotal = ref(0)
-const carbsTotal = ref(0)
+
+let dayInfo = await getDayInfo()
+const kalorieTotal = ref(dayInfo.calories)
+const proteinTotal = ref(dayInfo.protein)
+const fatTotal = ref(dayInfo.fat)
+const carbsTotal = ref(dayInfo.carbs)
+// console.log(kalorieTotal.value, proteinTotal.value, fatTotal.value, carbsTotal.value)
 
 async function getDayInfo() {
   let Today = new Date().toISOString().slice(0, 10);
