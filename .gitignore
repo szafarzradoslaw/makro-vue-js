@@ -27,4 +27,4 @@ dist-ssr
 venv
 
 # Database
-day-info
+day-info/
